@@ -20,7 +20,7 @@ fi
 
 imageName=$(grep imageName buildImage.sh | awk -F = '{ print $2 }')
 
-grep -Fi $imageName ../*/Dockerfile |
+grep -l -Fi $imageName ../*/Dockerfile |
     while read file
     do
 	echo "updating $file"
