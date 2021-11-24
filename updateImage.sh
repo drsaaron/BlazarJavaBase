@@ -12,7 +12,7 @@ do
     esac
 done
 
-imageName=$(grep ^imageName= buildImage.sh | awk -F = '{ print $2 }')
+imageName=$(dockerImageName.sh)
 
 if pullLatestDocker.sh || [ -n "$force" ]
 then

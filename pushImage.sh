@@ -18,6 +18,6 @@ then
     exit 1
 fi
 
-imageName=$(grep imageName buildImage.sh | awk -F = '{ print $2 }')
+imageName=$(dockerImageName.sh)
 
 docker push $imageName:$version
