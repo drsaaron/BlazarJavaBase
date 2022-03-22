@@ -1,5 +1,5 @@
 # Start from alpine image
-FROM openjdk:17-alpine
+FROM maven:3-openjdk-17-slim
 
 # this is the prod environment
 ENV ENVIRONMENT prod
@@ -12,7 +12,6 @@ ENV PATH /app:$PATH
 ADD ./getPomAttribute.sh .
 
 # setup timezone
-RUN apk add tzdata
 ENV TZ=US/Central
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
