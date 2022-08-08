@@ -9,11 +9,15 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 ENV ENVIRONMENT prod
 
 # define the user
-RUN groupadd --gid 1001 blazar && useradd --uid 1001 --gid blazar --create-home scott
+ARG LOCAL_USER
+ARG LOCAL_USER_ID
+ARG LOCAL_GROUP
+ARG LOCAL_GROUP_ID
+RUN groupadd --gid $LOCAL_GROUP $LOCAL_GROUP_ID && useradd --uid $LOCAL_USER --gid $LOCAL_GROUP_ID --create-home $LOCAL_USER_ID
 
 # create a workdir
-WORKDIR /home/scott
-ENV PATH /home/scott:$PATH
+WORKDIR /home/$LOCAL_USER_ID
+ENV PATH /home/$LOCAL_USER_ID:$PATH
 
 # add getPomAttribute.sh
 ADD ./getPomAttribute.sh .

@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/sh -x
 
 imageName=drsaaron/blazarjavabase
 
@@ -18,7 +18,7 @@ do
 done
 
 # build the image
-buildDocker.sh $@ -n $imageName
+buildDocker.sh $@ -n $imageName -u $(id -u) -U $(whoami) -g $(id -g) -G blazar
 
 # purge old
 purgeOldImages.sh -i $imageName
