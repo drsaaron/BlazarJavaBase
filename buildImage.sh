@@ -1,4 +1,4 @@
-#! /bin/sh -x
+#! /bin/sh 
 
 imageName=drsaaron/blazarjavabase
 
