@@ -1,5 +1,5 @@
 # Start from alpine image
-FROM maven:3-openjdk-17-slim
+FROM maven:3-openjdk-18-slim
 
 # setup timezone
 ENV TZ=US/Central
