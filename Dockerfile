@@ -1,5 +1,5 @@
 # Start from alpine image
-FROM maven:3-openjdk-18-slim
+FROM eclipse-temurin
 
 # setup timezone
 ENV TZ=US/Central
