@@ -2,8 +2,11 @@
 FROM eclipse-temurin
 
 # setup timezone
-ENV TZ=US/Central
+ENV TZ=America/Chicago
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+# install curl for the health check
+RUN apt update && apt install -y jq curl
 
 # this is the prod environment
 ENV ENVIRONMENT=prod
