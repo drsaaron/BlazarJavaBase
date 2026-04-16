@@ -16,7 +16,7 @@ imageName=$(dockerImageName.sh)
 
 if pullLatestDocker.sh || [ -n "$force" ]
 then
-    currentVersion=$(docker images $imageName | sed 1d  | awk '{ print $1 }' | awk -F: '$2 !~ "latest"{ print $2 }' | sort | tail -1)
+    currentVersion=$(docker images --format json $imageName | jq '.Tag' | grep -v latest | sort -r | sed 's/"//g' | head 1)
     nextVersion=$(echo $currentVersion |awk -F\. '{printf "%s.%s", $1, $2+1}')
     echo "docker base updated, so refreshing uses to version $nextVersion (from $currentVersion)"
     buildImage.sh -v $nextVersion
