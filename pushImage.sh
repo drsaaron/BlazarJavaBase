@@ -1,10 +1,13 @@
 #! /bin/sh
 
-while getopts :v: OPTION
+while getopts :pv: OPTION
 do
     case $OPTION in
 	v)
 	    version=$OPTARG
+	    ;;
+	p)
+	    doPush=1
 	    ;;
 	*)
 	    echo "invalid option $OPTARG" 1>&2
@@ -20,4 +23,10 @@ fi
 
 imageName=$(dockerImageName.sh)
 
-docker push $imageName:$version
+if [ -n "$doPush" ]
+then
+    echo "pushing image to docker hub"
+    docker push $imageName:$version
+else
+    echo "skipping push as not explicitly requested."
+fi
